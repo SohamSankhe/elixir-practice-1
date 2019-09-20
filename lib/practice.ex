@@ -18,8 +18,30 @@ defmodule Practice do
 
   def factor(x) do
     # Maybe delegate this too.
-    [1,2,x]
+    #[1,2,x]
+    Practice.Factors.getPrimeFactors(getInt(x))
   end
 
   # TODO: Add a palindrome? function.
+  def palindrome?(x) do
+    x == String.reverse(x)
+  end
+
+  def getFactors(num, factors, counter) do
+     cond do
+        counter <= 2 -> factors
+        rem(num, counter) == 0 -> getFactors(num, factors ++ [counter], counter-1)
+        true -> getFactors(num, factors, counter-1)
+     end
+  end
+  
+  def getInt(text) do
+     if is_integer(text) do
+	text
+     else
+	{num, _} = Integer.parse(text)
+     	num
+     end
+  end
+
 end

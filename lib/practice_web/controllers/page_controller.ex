@@ -13,14 +13,21 @@ defmodule PracticeWeb.PageController do
 
   def calc(conn, %{"expr" => expr}) do
     y = Practice.calc(expr)
+    #z = inspect(y)
     render conn, "calc.html", expr: expr, y: y
   end
 
   def factor(conn, %{"x" => x}) do
     y = Practice.factor(x)
-    render conn, "factor.html", x: x, y: y
+    z = inspect(y)
+    render conn, "factor.html", x: x, y: z
   end
 
   # TODO: Add an action for palindrome.
   # TODO: Add a template for palindrome over in lib/*_web/templates/page/??.html.eex
+
+  def isPalindrome(conn, %{"x" => x}) do
+    y = Practice.palindrome?(x)
+    render conn, "palindrome.html", x: x, y: y
+  end
 end
